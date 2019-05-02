@@ -1,3 +1,4 @@
+
 from django.db import models
 
 
@@ -6,11 +7,11 @@ from django.contrib.auth.models import User
 
 
 class MeetingType(models.Model):
-    meetingtitle=models.Charfield (max_length='64')
-    meetingdate=models.Datefield()
-    meetingtime=models=models.Integer (max_length='4')
-    meetinglocation==models.Charfield (max_length='255')
-    meetingagenda=models.Charfield (max_length='255')
+    meetingtitle=models.CharField (max_length=64)
+    meetingdate=models.DateField()
+    meetingtime=models.TimeField()
+    meetinglocation=models.CharField (max_length=255)
+    meetingagenda=models.CharField (max_length=255)
  
     class Meta:
         db_table='meetings'
@@ -19,8 +20,8 @@ class MeetingType(models.Model):
     def __str__(self):
         return self.meetingtitle
 
- class MeetingMinutes(models.Model):
-    minutesid=models.ForeignKey (MeetingType, on_delete models.DO_NOTHING)
+class MeetingMinutes(models.Model):
+    minutesid=models.ForeignKey (MeetingType, on_delete = models.DO_NOTHING)
     minutesattendance=models.ManyToManyField(User)
     minutestext=models.TextField()
 
@@ -31,30 +32,30 @@ class MeetingType(models.Model):
     def __str__(self):
         return self.minutesid
 
-
-class MeetingResource
-    resourcename=models.Charfield (max_length='64')
-    resourcetype=models.Charfield (max_length='64')
+class MeetingResource(models.Model):
+    resourcename=models.CharField (max_length=64)
+    resourcetype=models.CharField (max_length=64)
     resourceurl=models.URLField(null=True, blank=True)
-    resourceentrydate=models.Datefield()
-    resourceuseridmodels.Charfield (User)
+    resourceentrydate=models.DateField()
+    resourceuserid=models.CharField (User)
     resourcedescription=models.TextField()
 
     def __str__(self):
         return self.resourcename
     
     class Meta:
-    db_table= 'resource'
-    verbose_name_plural='MeetingResources'
+        db_table= 'resource'
+        verbose_name_plural='MeetingResources'
    
 
-class MeetingEvent
-    eventtitle=models.Charfield (max_length='64')
-    eventlocation=models.Charfield (max_length='64')
-    eventdate=models.Datefield()
-    eventtime=models.
+
+class MeetingEvent (models.Model):
+    eventtitle=models.CharField (max_length=64)
+    eventlocation=models.CharField (max_length=64)
+    eventdate=models.DateField()
+    eventtime=models.TimeField ()
     eventdescription=models.TextField()
-    eventuserid=models.Charfield (User)
+    eventuserid=models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     
     class Meta:
@@ -66,4 +67,10 @@ class MeetingEvent
         return self.eventtitle
 
 # Register your models here.
+
+
+
+
+
+
 

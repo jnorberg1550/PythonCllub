@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object or 404
-from .models import TechType, Product, Review
+from .models import MeetingType, MeetingMinutes, MeetingResource, MeetingEvent
+from .forms import MeetingForm
 
 def index (request):
     return render(request, 'techapp/index.html')
@@ -18,7 +19,32 @@ prod=Meetings.agenda.get (pk=id)
 agenda=Meetings.agenda.filter(meeting=id)
 context{
 'prod' : prod,
+rrom .forms import MeetingFormrcecount: resourcecount,
+}rom .forms import ProductForm
+
+return render (request, "clubapp/resoucedetail.html", context = context)
+
+
+def meetingsAgenda (request, id)
+prod=Meetings.agenda.get (pk=id)
+agenda=Meetings.agenda.filter(meeting=id)
+context{
+'prod' : prod,
 resourcecount: resourcecount,
 }
 
-return render (request, "clubapp/resoucedetail.html", context = context)
+
+
+return render (request, "clubapp/newmeeting.html", ('form' : form))
+
+def newmeeting(request):
+     form=MeetingForm
+     if request.method=='POST':
+          form=MeetingForm(request.POST)
+          if form.is_valid():
+               post=form.save(commit=True)
+               post.save()
+               form=ReviewForm()
+     else:
+          form=MeetingForm()
+     return render(request, 'clubapp/newreview.html', {'form' : form})

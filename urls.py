@@ -1,9 +1,10 @@
-from django.urls import path
-from .import views 
+"
+
+
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path ('', views.index, name = 'index'),
-    path ('getTypes/', views.getTypes, name = 'types'),
-    path ('getResources/', views.getResources, name='resources'),
-    path ('resourceDetail/<int:id>', views.resourceDetail, name ='resourceDetail'),
+    path('admin/', admin.site.urls),
+    path('clubapp/', include ('clubapp.urls')),
 ]

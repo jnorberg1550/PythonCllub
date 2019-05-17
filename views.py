@@ -1,25 +1,26 @@
+
 from django.shortcuts import render, get_object or 404
 from .models import MeetingType, MeetingMinutes, MeetingResource, MeetingEvent
 from .forms import MeetingForm
 
 def index (request):
-    return render(request, 'techapp/index.html')
+    return render(request, 'clubapp/index.html')
 
 def getypes (request):
-    types list = TechType.objects.all()
+    types list = MeetingType.objects.all()
     context {"types_list" : types list}
     return render (request, 'PythonClubApp/types.html' context=context)
 
-def getResouces (request):
-    resources list=Resource.objects.all()
-    return render (request, 'clubapp.resources.html'), {'resource list': resource list}
+def getMeetings (request):
+    resources list=MeetingTypes.objects.all()
+    return render (request, 'clubapp.meetings.html'), {'meeting list': meeting list}
 
 def meetingsAgenda (request, id)
 prod=Meetings.agenda.get (pk=id)
 agenda=Meetings.agenda.filter(meeting=id)
 context{
 'prod' : prod,
-rrom .forms import MeetingFormrcecount: resourcecount,
+rrom .forms import MeetingFormcount: resourcecount,
 }rom .forms import ProductForm
 
 return render (request, "clubapp/resoucedetail.html", context = context)

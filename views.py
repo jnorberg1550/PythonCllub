@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, get_object or 404
 from .models import MeetingType, MeetingMinutes, MeetingResource, MeetingEvent
 from .forms import MeetingForm
@@ -21,7 +20,7 @@ agenda=Meetings.agenda.filter(meeting=id)
 context{
 'prod' : prod,
 rrom .forms import MeetingFormcount: resourcecount,
-}rom .forms import ProductForm
+}rom .forms import Form
 
 return render (request, "clubapp/resoucedetail.html", context = context)
 
@@ -49,3 +48,16 @@ def newmeeting(request):
      else:
           form=MeetingForm()
      return render(request, 'clubapp/newreview.html', {'form' : form})
+
+     @login_required
+def newMeeting(request):
+     form=MeetingForm
+     if request.method=='POST':
+          form=MeetingForm(request.POST)
+          if form.is_valid():
+               post=form.save(commit=True)
+               post.save()
+               form=MeetingForm()
+     else:
+          form=MeetingForm()
+     return render(request, 'techapp/newmeeting.html', {'form': form})
